@@ -1,17 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const TeamCard = ({ team }) => {
-  return (
-    <div className="border rounded-lg p-4 bg-gray-100">
-      <h2 className="font-bold text-lg">{team.name}</h2>
-      <p>Ranking: {team.ranking}</p>
-      <p>Coach: {team.coach}</p>
-      <Link to={`/teams/${team.id}`} className="text-blue-500 underline">
-        View Details
-      </Link>
-    </div>
-  );
+    return (
+        <motion.div
+            className="bg-white shadow-md rounded-lg p-4 border border-gray-200 cursor-pointer"
+            whileHover={{ 
+                scale: 1.05, 
+                boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
+                transition: { type: 'spring', stiffness: 300 }
+            }}
+            whileTap={{ scale: 0.95 }}
+        >
+            <h3 className="text-xl font-semibold text-gray-800 mb-2">{team.name}</h3>
+            <p className="text-gray-600"><strong>Ranking:</strong> {team.ranking}</p>
+            <p className="text-gray-600"><strong>ICC Points:</strong> {team.iccPoints}</p>
+            <p className="text-gray-600"><strong>Coach:</strong> {team.coach}</p>
+        </motion.div>
+    );
 };
 
 export default TeamCard;
